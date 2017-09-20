@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<div id="showMe"></div>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script>
+ 
+    $.ajax({
+            method: "GET",
+            dataType: "json",
+            url: "https://johnrayopulento.000webhostapp.com/deped/getJobId.php",   
+            cache: false,
+            success: function (result) {              
+            
+                var data = " ";
+                for (i=0; i < result.length; i++){
+                  data += result[i].fld_jobOrder;
+
+                }
+                $("#showMe").html(data);
+            },
+            error: function(response){
+                alert(response);
+            }
+        });
+
+
+
+</script>
+</body>
+</html>

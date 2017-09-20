@@ -1,9 +1,143 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
+<html lang="en" class="full-height"><head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Log In</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="css/compiled.min.css" rel="stylesheet">
+
+    <style>
+.hm-purple-light .full-bg-img, .hm-purple-light .mask{
+    background-color: white;
+}
+            
+    </style>
 </head>
+
 <body>
-HELLO WORLD
-</body>
-</html>
+
+    <!--Main Navigation-->
+    <header>
+    
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar danger-color-dark">
+            <a class="navbar-brand" href="#"><strong>DepEd - Olongapo</strong></a>
+          
+           
+        </nav>
+
+        <div class="view intro-2 hm-purple-light" style="">
+          <div class="full-bg-img flex-center">
+                <div class="container">
+                    <div class="white-text text-center">
+                        <h2 style="color:#000">DCP Monitoring System</h2>
+                            <center>      <img src="img/ictulogo.png" class="img-responsive" width="20%" height="20%"></center>
+                            <button class="btn blue-gradient btn-rounded" data-toggle="modal" data-target="#modalLoginAvatarDemo">Log In</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </header>
+    <!--Main Navigation-->
+    
+    <!--Main Layout-->
+    <main class="text-center py-5">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                
+
+                </div>
+            </div>
+        </div>
+    
+    </main>
+    <!--Main Layout-->
+     <div class="modal fade" id="modalLoginAvatarDemo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
+                <!--Content-->
+                <div class="modal-content">
+
+                    <!--Header-->
+                    <div class="modal-header">
+                        <img src="img/ictulogo.png" class="img-responsive">
+                    </div>
+                    <!--Body-->
+                    <form id="loginform" method="GET">
+                    <div class="modal-body text-center mb-1">
+                        <div class="md-form ml-0 mr-0">
+                            <input type="text" type="text" id="userkey" class="form-control ml-0">
+                            <label for="userkey" class="ml-0">Enter Username</label>
+                        </div>
+                        <div class="md-form ml-0 mr-0">
+                            <input type="password" type="text" id="passkey" class="form-control ml-0">
+                            <label for="passkey" class="ml-0">Enter password</label>
+                        </div>
+                        <div class="text-center">
+                            <input type="button" class="btn btn-cyan mt-1" id="btnsubmit" value="Login">
+                        </div>
+                    </div>
+                    </form>
+<div id="showMe"></div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+	<script type="text/javascript" src="js/jquery-3.1.1.js"></script>	
+    <script type="text/javascript" src="js/compiled.min.js"></script>
+    <script>
+        wow = new WOW().init();
+		
+		
+		    $.ajax({
+            method: "GET",
+            dataType: "json",
+            url: "https://johnrayopulento.000webhostapp.com/deped/getJobId.php?",   
+            success: function (result) {              
+            
+                var data = " ";
+                for (i=0; i < result.length; i++){
+                  data += result[i].fld_jobOrder;
+
+                }
+                $("#showMe").html(data);
+				alert(data);
+            },
+            error: function(error){
+                alert("error:"+error);
+				$("#showMe").html(error);
+            }
+        });
+
+		
+		
+		
+              $('#btnsubmit').click(function(){
+            var user = $('#userkey').val();
+            var pass = $('#passkey').val();
+
+			alert("hello "+user);
+            $.ajax({
+                url: "https://johnrayopulento.000webhostapp.com/deped/login.php?username="+user+"&password="+pass,
+                success: function(result){
+                    //alert(result);
+                    if(result == "success"){
+                        location.href = 'home.html';    
+                    }
+                    else{
+                        alert("Invalid credentials");    
+                    }
+                },
+             error:function (xhr, status, error){
+					alert( "status=" + xhr.responseText + ", error=" + status + ", error=" + error );
+					location.href = 'home.html'; 
+                }
+            });
+        });
+    </script>
+<div class="hiddendiv common"></div></body></html>

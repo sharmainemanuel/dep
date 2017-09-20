@@ -5,32 +5,5 @@
 </head>
 <body>
 HELLO WORLD
-<div id="showMe"></div>
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script>
- 
-    $.ajax({
-            method: "GET",
-            dataType: "json",
-            url: "https://johnrayopulento.000webhostapp.com/deped/getJobId.php",   
-            cache: false,
-            success: function (result) {              
-            
-                var data = " ";
-                for (i=0; i < result.length; i++){
-                  data += result[i].fld_jobOrder;
-
-                }
-                $("#showMe").html(data);
-            },
-            error: function(response){
-                alert(response);
-            }
-        });
-
-
-
-</script>
 </body>
 </html>
